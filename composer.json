@@ -16,6 +16,7 @@
         "guava/filament-knowledge-base": "^3.0.1",
         "he4rt/identity": "^1.0.0",
         "he4rt/panel-admin": "^1.0.0",
+        "he4rt/panel-streamer": "^1.0",
         "he4rt/widget-player": ">=1",
         "internachi/modular": "^3.0.2",
         "joaopaulolndev/filament-edit-profile": "^3.0.2",

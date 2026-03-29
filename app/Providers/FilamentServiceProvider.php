@@ -101,7 +101,6 @@ class FilamentServiceProvider extends ServiceProvider
     private function configureTable(): void
     {
         Table::configureUsing(fn (Table $table): Table => $table
-            ->deferLoading()
             ->persistSortInSession()
             ->persistSearchInSession()
             ->extremePaginationLinks()
