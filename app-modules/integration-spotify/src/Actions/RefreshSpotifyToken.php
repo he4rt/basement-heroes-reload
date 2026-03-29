@@ -8,11 +8,12 @@ use He4rt\Identity\ExternalIdentity\Data\ClientAccessManager;
 use He4rt\Identity\ExternalIdentity\Models\ExternalIdentity;
 use He4rt\IntegrationSpotify\Connectors\SpotifyConnector;
 use Illuminate\Support\Facades\Crypt;
+use Saloon\Contracts\OAuthAuthenticator;
 use Saloon\Http\Auth\AccessTokenAuthenticator;
 
 class RefreshSpotifyToken
 {
-    public function handle(ExternalIdentity $identity): AccessTokenAuthenticator
+    public function handle(ExternalIdentity $identity): OAuthAuthenticator
     {
         $connector = new SpotifyConnector;
         $credentials = $identity->credentials;

@@ -28,7 +28,7 @@ class CurrentlyPlayingData
             trackId: $item['id'] ?? null,
             trackName: $item['name'] ?? null,
             artistName: isset($item['artists'])
-                ? collect($item['artists'])->pluck('name')->join(', ')
+                ? collect((array) $item['artists'])->pluck('name')->join(', ')
                 : null,
             albumName: $item['album']['name'] ?? null,
             albumImageUrl: $item['album']['images'][0]['url'] ?? null,

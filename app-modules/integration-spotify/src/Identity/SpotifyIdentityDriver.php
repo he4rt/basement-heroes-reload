@@ -10,6 +10,8 @@ use He4rt\Identity\ExternalIdentity\Data\ClientAccessManager;
 use He4rt\Identity\ExternalIdentity\Enums\IdentityProvider;
 use Illuminate\Support\Facades\Crypt;
 use Laravel\Socialite\Facades\Socialite;
+use Laravel\Socialite\Two\User;
+use SocialiteProviders\Manager\OAuth2\AbstractProvider;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 
 class SpotifyIdentityDriver implements IdentityDriver
@@ -26,13 +28,17 @@ class SpotifyIdentityDriver implements IdentityDriver
 
     public function redirect(string $tenantId): RedirectResponse
     {
-        return Socialite::driver('spotify')
+        /** @var AbstractProvider $driver */
+        $driver = Socialite::driver('spotify');
+
+        return $driver
             ->scopes(config('services.spotify.scopes'))
             ->redirect();
     }
 
     public function callback(): ClientAccessManager
     {
+        /** @var User $user */
         $user = Socialite::driver('spotify')->user();
 
         return new ClientAccessManager(
