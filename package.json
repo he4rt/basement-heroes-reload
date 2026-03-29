@@ -42,5 +42,9 @@
             "vendor/bin/rector process",
             "vendor/bin/pint"
         ]
+    },
+    "dependencies": {
+        "laravel-echo": "^2.3.1",
+        "pusher-js": "^8.4.3"
     }
 }
