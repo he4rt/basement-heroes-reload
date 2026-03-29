@@ -10,7 +10,7 @@ return new class extends Migration
 {
     public function up(): void
     {
-        Schema::create('widget_player_profiles', function (Blueprint $table) {
+        Schema::create('widget_player_profiles', function (Blueprint $table): void {
             $table->uuid('id')->primary();
             $table->foreignUuid('team_id')->constrained('identity_teams')->cascadeOnDelete();
             $table->foreignUuid('external_identity_id')->nullable()->constrained('identity_external_identities')->nullOnDelete();
