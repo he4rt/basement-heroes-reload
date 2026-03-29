@@ -1,0 +1,27 @@
+{
+    "name": "he4rt/panel-streamer",
+    "description": "",
+    "type": "library",
+    "version": "1.0.0",
+    "license": "proprietary",
+    "autoload": {
+        "psr-4": {
+            "He4rt\\Streamer\\": "src/",
+            "He4rt\\Streamer\\Database\\Factories\\": "database/factories/",
+            "He4rt\\Streamer\\Database\\Seeders\\": "database/seeders/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "He4rt\\Streamer\\Tests\\": "tests/"
+        }
+    },
+    "minimum-stability": "stable",
+    "extra": {
+        "laravel": {
+            "providers": [
+                "He4rt\\Streamer\\PanelStreamerServiceProvider"
+            ]
+        }
+    }
+}

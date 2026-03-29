@@ -10,11 +10,13 @@ use Filament\Support\Contracts\HasLabel;
 enum IdentityType: string implements HasColor, HasLabel
 {
     case External = 'external';
+    case Music = 'music';
 
     public function getLabel(): string
     {
         return match ($this) {
             self::External => 'External Platform',
+            self::Music => 'Music',
         };
     }
 
@@ -22,6 +24,7 @@ enum IdentityType: string implements HasColor, HasLabel
     {
         return match ($this) {
             self::External => 'primary',
+            self::Music => 'success',
         };
     }
 }
