@@ -32,7 +32,7 @@ enum IdentityProvider: string implements HasColor, HasLabel
     {
         return match ($this) {
             self::GitHub => IdentityType::External,
-            self::Spotify => IdentityType::External,
+            self::Spotify => IdentityType::Music,
         };
     }
 

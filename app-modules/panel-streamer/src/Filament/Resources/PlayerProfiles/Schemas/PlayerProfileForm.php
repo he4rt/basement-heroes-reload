@@ -15,7 +15,7 @@ use Filament\Schemas\Components\Tabs;
 use Filament\Schemas\Components\Tabs\Tab;
 use Filament\Schemas\Components\Utilities\Get;
 use Filament\Schemas\Schema;
-use He4rt\Identity\ExternalIdentity\Enums\IdentityProvider;
+use He4rt\Identity\ExternalIdentity\Enums\IdentityType;
 use He4rt\Identity\ExternalIdentity\Models\ExternalIdentity;
 use He4rt\WidgetPlayer\Enums\AnimationType;
 use He4rt\WidgetPlayer\Enums\CoverStyle;
@@ -71,7 +71,7 @@ class PlayerProfileForm
                 ->default(true),
 
             Select::make('external_identity_id')
-                ->label('Spotify Connection')
+                ->label('Music Connection')
                 ->options(function (): array {
                     $tenant = filament()->getTenant();
 
@@ -81,14 +81,14 @@ class PlayerProfileForm
 
                     return ExternalIdentity::query()
                         ->where('team_id', $tenant->getKey())
-                        ->where('provider', IdentityProvider::Spotify)
+                        ->where('type', IdentityType::Music)
                         ->whereNotNull('connected_at')
                         ->whereNull('disconnected_at')
                         ->pluck('external_account_id', 'id')
                         ->toArray();
                 })
-                ->placeholder('Select a Spotify account')
-                ->helperText('Connect Spotify in External Identities to link it here.'),
+                ->placeholder('Select a music account')
+                ->helperText('Connect a music provider in External Identities to link it here.'),
 
             TextInput::make('browser_source_token')
                 ->label('Browser Source Token')
