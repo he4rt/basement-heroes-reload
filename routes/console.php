@@ -25,3 +25,7 @@ Schedule::command('backup:monitor')
     ->when(fn () => config('backup.enabled'))
     ->daily()
     ->at('04:00');
+
+Schedule::command('spotify:poll-now-playing')
+    ->when(fn () => config('integration-spotify.polling.enabled'))
+    ->everyTenSeconds();

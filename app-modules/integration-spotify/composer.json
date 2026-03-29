@@ -1,0 +1,27 @@
+{
+    "name": "he4rt/integration-spotify",
+    "description": "",
+    "type": "library",
+    "version": "1.0.0",
+    "license": "proprietary",
+    "autoload": {
+        "psr-4": {
+            "He4rt\\IntegrationSpotify\\": "src/",
+            "He4rt\\IntegrationSpotify\\Database\\Factories\\": "database/factories/",
+            "He4rt\\IntegrationSpotify\\Database\\Seeders\\": "database/seeders/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "He4rt\\IntegrationSpotify\\Tests\\": "tests/"
+        }
+    },
+    "minimum-stability": "stable",
+    "extra": {
+        "laravel": {
+            "providers": [
+                "He4rt\\IntegrationSpotify\\Providers\\IntegrationSpotifyServiceProvider"
+            ]
+        }
+    }
+}
