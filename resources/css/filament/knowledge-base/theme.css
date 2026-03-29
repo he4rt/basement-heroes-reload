@@ -1,0 +1,11 @@
+@import '../../../../vendor/filament/filament/resources/css/theme.css';
+
+@plugin "@tailwindcss/typography";
+
+@source '../../../../../vendor/guava/filament-knowledge-base/src/**/*';
+@source '../../../../../vendor/guava/filament-knowledge-base/resources/views/**/*';
+
+@source '../../../../app/Filament/Admin/**/*';
+@source '../../../../app-modules/**/resources/views/**/*';
+@source '../../../../vendor/joaopaulolndev/filament-edit-profile/resources/**/*';
+@source '../../../../resources/views/filament/admin/**/*';
