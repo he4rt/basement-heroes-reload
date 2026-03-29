@@ -16,10 +16,7 @@ use SocialiteProviders\Spotify\SpotifyExtendSocialite;
 
 class IntegrationSpotifyServiceProvider extends ServiceProvider
 {
-    public function register(): void
-    {
-        $this->mergeConfigFrom(__DIR__.'/../../config/integration-spotify.php', 'integration-spotify');
-    }
+    public function register(): void {}
 
     public function boot(): void
     {

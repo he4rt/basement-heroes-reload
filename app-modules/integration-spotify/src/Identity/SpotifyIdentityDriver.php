@@ -27,7 +27,7 @@ class SpotifyIdentityDriver implements IdentityDriver
     public function redirect(string $tenantId): RedirectResponse
     {
         return Socialite::driver('spotify')
-            ->scopes(config('integration-spotify.scopes'))
+            ->scopes(config('services.spotify.scopes'))
             ->redirect();
     }
 

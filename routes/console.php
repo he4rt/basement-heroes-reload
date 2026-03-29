@@ -27,5 +27,5 @@ Schedule::command('backup:monitor')
     ->at('04:00');
 
 Schedule::command('spotify:poll-now-playing')
-    ->when(fn () => config('integration-spotify.polling.enabled'))
+    ->when(fn () => config('services.spotify.polling.enabled'))
     ->everyTenSeconds();

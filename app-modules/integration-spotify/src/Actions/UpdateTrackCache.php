@@ -9,6 +9,7 @@ use He4rt\IntegrationSpotify\Data\CurrentlyPlayingData;
 use He4rt\IntegrationSpotify\Events\NowPlayingUpdated;
 use He4rt\IntegrationSpotify\Models\SpotifyTrackCache;
 use He4rt\WidgetPlayer\Models\PlayerProfile;
+use Illuminate\Support\Facades\Cache;
 
 class UpdateTrackCache
 {
@@ -48,10 +49,12 @@ class UpdateTrackCache
 
     private function broadcast(ExternalIdentity $identity, CurrentlyPlayingData $data): void
     {
-        $playerProfile = PlayerProfile::query()
+        $cacheKey = 'spotify.player_profile.'.$identity->id;
+
+        $playerProfile = Cache::flexible($cacheKey, [30, 60], fn () => PlayerProfile::query()
             ->where('team_id', $identity->team_id)
             ->where('external_identity_id', $identity->id)
-            ->first();
+            ->first());
 
         if ($playerProfile?->browser_source_token) {
             broadcast(new NowPlayingUpdated(

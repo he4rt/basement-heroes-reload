@@ -41,6 +41,11 @@ return [
         'client_id' => env('SPOTIFY_CLIENT_ID'),
         'client_secret' => env('SPOTIFY_CLIENT_SECRET'),
         'redirect' => env('SPOTIFY_REDIRECT_URI'),
+        'scopes' => explode(',', (string) env('SPOTIFY_SCOPES', 'user-read-currently-playing')),
+        'polling' => [
+            'enabled' => env('SPOTIFY_POLLING_ENABLED', true),
+            'interval' => env('SPOTIFY_POLLING_INTERVAL', 10),
+        ],
     ],
 
 ];
