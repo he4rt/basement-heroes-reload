@@ -55,12 +55,11 @@
                         }}
                     </div>
                 @else
-                    <a
-                        href="{{ route('identity.oauth.connect', $card['provider']) }}"
-                        class="bg-primary-600 hover:bg-primary-700 inline-flex items-center rounded-lg px-4 py-2 text-sm font-medium text-white"
-                    >
-                        Connect
-                    </a>
+                    {{
+                        ($this->connectAction)([
+                            'provider' => $card['provider']->value,
+                        ])
+                    }}
                 @endif
             </div>
         @endforeach

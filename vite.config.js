@@ -11,6 +11,8 @@ export default defineConfig({
                 'resources/css/filament/streamer/theme.css',
                 'resources/css/app.css',
                 'resources/js/app.js',
+                'app-modules/widget-player/resources/css/widget-player.css',
+                'app-modules/widget-player/resources/js/widget-player.js',
             ],
             refresh: true,
         }),
