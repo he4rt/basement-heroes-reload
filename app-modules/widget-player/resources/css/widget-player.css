@@ -1,0 +1,77 @@
+@import 'tailwindcss';
+
+@source '../views/**/*.blade.php';
+@source '../js/**/*.js';
+
+html,
+body {
+    background: transparent !important;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+.player {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 8px;
+    border-radius: 12px;
+    background: rgba(18, 18, 18, 0.85);
+    backdrop-filter: blur(10px);
+    max-width: 400px;
+    transition: opacity 300ms ease;
+}
+
+.player--hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.player--transitioning {
+    opacity: 0;
+}
+
+.player__cover {
+    width: 56px;
+    height: 56px;
+    border-radius: 8px;
+    object-fit: cover;
+    flex-shrink: 0;
+}
+
+.player__info {
+    overflow: hidden;
+    flex: 1;
+    min-width: 0;
+}
+
+.player__track {
+    font-weight: 600;
+    font-size: 14px;
+    color: #fff;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.player__artist {
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.7);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* Light theme */
+[data-theme='light'] .player {
+    background: rgba(255, 255, 255, 0.9);
+}
+
+[data-theme='light'] .player__track {
+    color: #121212;
+}
+
+[data-theme='light'] .player__artist {
+    color: rgba(18, 18, 18, 0.7);
+}

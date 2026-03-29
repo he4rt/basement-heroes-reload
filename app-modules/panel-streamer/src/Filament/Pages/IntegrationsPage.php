@@ -2,27 +2,31 @@
 
 declare(strict_types=1);
 
-namespace He4rt\Admin\Filament\Pages;
+namespace He4rt\Streamer\Filament\Pages;
 
+use BackedEnum;
 use Filament\Actions\Action;
 use Filament\Notifications\Notification;
 use Filament\Pages\Page;
+use Filament\Support\Icons\Heroicon;
 use He4rt\Identity\ExternalIdentity\Actions\DisconnectIdentity;
 use He4rt\Identity\ExternalIdentity\Enums\IdentityProvider;
 use He4rt\Identity\ExternalIdentity\Models\ExternalIdentity;
 
-class ExternalIdentitiesPage extends Page
+class IntegrationsPage extends Page
 {
-    protected string $view = 'panel-admin::filament.pages.external-identities';
+    protected string $view = 'panel-streamer::filament.pages.integrations';
 
-    protected static ?string $slug = 'external-identities';
+    protected static ?string $slug = 'integrations';
 
     protected static ?string $title = 'Integrations';
 
-    protected static bool $shouldRegisterNavigation = false;
+    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedLink;
+
+    protected static ?int $navigationSort = 2;
 
     /**
-     * @return array<int, array{provider: IdentityProvider, identity: ExternalIdentity|null, connected: bool, total_resources: int, mapped_resources: int, unmapped_resources: int, last_synced_at: string|null}>
+     * @return array<int, array{provider: IdentityProvider, identity: ExternalIdentity|null, connected: bool}>
      */
     public function getProviderCards(): array
     {
@@ -32,21 +36,11 @@ class ExternalIdentitiesPage extends Page
             ->keyBy(fn (ExternalIdentity $i) => $i->provider->value);
 
         return collect(IdentityProvider::cases())
-            ->map(function (IdentityProvider $provider) use ($identities): array {
-                $identity = $identities->get($provider->value);
-                $totalResources = $identity?->resources()->count() ?? 0;
-                $mappedResources = $identity?->resources()->whereNotNull('resourceable_id')->count() ?? 0;
-
-                return [
-                    'provider' => $provider,
-                    'identity' => $identity,
-                    'connected' => $identity !== null && $identity->isConnected(),
-                    'total_resources' => $totalResources,
-                    'mapped_resources' => $mappedResources,
-                    'unmapped_resources' => $totalResources - $mappedResources,
-                    'last_synced_at' => $identity?->metadata['last_projects_sync_at'] ?? null,
-                ];
-            })
+            ->map(fn (IdentityProvider $provider): array => [
+                'provider' => $provider,
+                'identity' => $identities->get($provider->value),
+                'connected' => ($identity = $identities->get($provider->value)) !== null && $identity->isConnected(),
+            ])
             ->all();
     }
 
@@ -54,11 +48,13 @@ class ExternalIdentitiesPage extends Page
     {
         return Action::make('connect')
             ->label('Connect')
+            ->color('success')
+            ->icon('heroicon-o-link')
             ->action(function (array $arguments): void {
                 $provider = IdentityProvider::from($arguments['provider']);
 
                 session()->put('identity_oauth_return', [
-                    'panel' => 'admin',
+                    'panel' => 'streamer',
                     'tenant' => filament()->getTenant()->getKey(),
                 ]);
 
@@ -71,7 +67,7 @@ class ExternalIdentitiesPage extends Page
         return Action::make('disconnect')
             ->requiresConfirmation()
             ->modalHeading('Disconnect Integration')
-            ->modalDescription('Are you sure you want to disconnect this integration? Resource mappings will be preserved.')
+            ->modalDescription('Are you sure you want to disconnect this integration?')
             ->action(function (array $arguments): void {
                 $identity = ExternalIdentity::query()->findOrFail($arguments['identity_id']);
 
