@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "b8804b0096480a6da069f66f0a2ac87e",
+    "content-hash": "8dfa811eb4d3890b2c6027d206e34415",
     "packages": [
         {
             "name": "alizharb/filament-activity-log",
@@ -3136,6 +3136,42 @@
             "autoload-dev": {
                 "psr-4": {
                     "He4rt\\Admin\\Tests\\": "tests/"
+                }
+            },
+            "license": [
+                "proprietary"
+            ],
+            "transport-options": {
+                "symlink": true,
+                "relative": true
+            }
+        },
+        {
+            "name": "he4rt/widget-player",
+            "version": "1.0.0",
+            "dist": {
+                "type": "path",
+                "url": "app-modules/widget-player",
+                "reference": "969a6a54e42d8ad4c56c80601a091c8865fc19bf"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "He4rt\\WidgetPlayer\\Providers\\WidgetPlayerServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "He4rt\\WidgetPlayer\\": "src/",
+                    "He4rt\\WidgetPlayer\\Database\\Factories\\": "database/factories/",
+                    "He4rt\\WidgetPlayer\\Database\\Seeders\\": "database/seeders/"
+                }
+            },
+            "autoload-dev": {
+                "psr-4": {
+                    "He4rt\\WidgetPlayer\\Tests\\": "tests/"
                 }
             },
             "license": [

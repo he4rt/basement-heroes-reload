@@ -1,0 +1,25 @@
+{
+    "name": "he4rt/widget-player",
+    "description": "",
+    "type": "library",
+    "version": "1.0.0",
+    "license": "proprietary",
+    "autoload": {
+        "psr-4": {
+            "He4rt\\WidgetPlayer\\": "src/",
+            "He4rt\\WidgetPlayer\\Database\\Factories\\": "database/factories/",
+            "He4rt\\WidgetPlayer\\Database\\Seeders\\": "database/seeders/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "He4rt\\WidgetPlayer\\Tests\\": "tests/"
+        }
+    },
+    "minimum-stability": "stable",
+    "extra": {
+        "laravel": {
+            "providers": ["He4rt\\WidgetPlayer\\Providers\\WidgetPlayerServiceProvider"]
+        }
+    }
+}

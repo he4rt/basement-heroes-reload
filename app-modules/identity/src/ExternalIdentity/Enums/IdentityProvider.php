@@ -10,11 +10,13 @@ use Filament\Support\Contracts\HasLabel;
 enum IdentityProvider: string implements HasColor, HasLabel
 {
     case GitHub = 'github';
+    case Spotify = 'spotify';
 
     public function getLabel(): string
     {
         return match ($this) {
             self::GitHub => 'GitHub',
+            self::Spotify => 'Spotify',
         };
     }
 
@@ -22,6 +24,7 @@ enum IdentityProvider: string implements HasColor, HasLabel
     {
         return match ($this) {
             self::GitHub => 'warning',
+            self::Spotify => 'success',
         };
     }
 
@@ -29,6 +32,7 @@ enum IdentityProvider: string implements HasColor, HasLabel
     {
         return match ($this) {
             self::GitHub => IdentityType::External,
+            self::Spotify => IdentityType::External,
         };
     }
 
@@ -36,6 +40,7 @@ enum IdentityProvider: string implements HasColor, HasLabel
     {
         return match ($this) {
             self::GitHub => 'github',
+            self::Spotify => 'spotify',
         };
     }
 }
